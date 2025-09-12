@@ -1,0 +1,62 @@
+#include <iostream>
+#include <limits> // для очистки потока
+
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "Russian"); // поддержка русского текста
+
+    while (true) {
+        double num1, num2;
+        char op;
+        char choice;
+
+        cout << "Введите первое число: ";
+        while (!(cin >> num1)) { // проверка на корректный ввод
+            cout << "Ошибка! Введите число: ";
+            cin.clear(); // очистка флагов ошибки
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
+        cout << "Введите второе число: ";
+        while (!(cin >> num2)) {
+            cout << "Ошибка! Введите число: ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
+        cout << "Выберите операцию (+, -, *, /): ";
+        cin >> op;
+
+        switch (op) {
+        case '+':
+            cout << "Результат: " << num1 + num2 << endl;
+            break;
+        case '-':
+            cout << "Результат: " << num1 - num2 << endl;
+            break;
+        case '*':
+            cout << "Результат: " << num1 * num2 << endl;
+            break;
+        case '/':
+            if (num2 == 0) {
+                cout << "Ошибка! Деление на ноль невозможно." << endl;
+            }
+            else {
+                cout << "Результат: " << num1 / num2 << endl;
+            }
+            break;
+        default:
+            cout << "Неверная операция!" << endl;
+        }
+
+        cout << "Хотите продолжить? (y/n): ";
+        cin >> choice;
+        if (choice == 'n' || choice == 'N') {
+            cout << "Программа завершена." << endl;
+            break;
+        }
+    }
+
+    return 0;
+}
