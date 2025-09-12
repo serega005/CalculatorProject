@@ -1,0 +1,101 @@
+// Во второй версии были добавлены Возведение в степень (^) Нахождение квадратного корня (sqrt) Остаток от деления (%) Факториал числа (!)
+#include <iostream>
+#include <limits>
+#include <cmath> // для математических функций
+
+using namespace std;
+
+// функция для факториала
+long long factorial(int n) {
+    if (n < 0) return -1; // ошибка
+    if (n == 0 || n == 1) return 1;
+    long long res = 1;
+    for (int i = 2; i <= n; i++) res *= i;
+    return res;
+}
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+
+    while (true) {
+        double num1, num2;
+        char op;
+        char choice;
+
+        cout << "Введите первое число: ";
+        while (!(cin >> num1)) {
+            cout << "Ошибка! Введите число: ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
+        cout << "Выберите операцию (+, -, *, /, ^, %, sqrt, !): ";
+        cin >> op;
+
+        if (op == '!' || op == 's') { 
+            // операции с одним числом (факториал, sqrt)
+            if (op == '!') {
+                if (num1 < 0 || num1 != (int)num1) {
+                    cout << "Ошибка! Факториал определён только для целых неотрицательных чисел." << endl;
+                } else {
+                    cout << "Результат: " << factorial((int)num1) << endl;
+                }
+            }
+            else if (op == 's') {
+                if (num1 < 0) {
+                    cout << "Ошибка! Корень из отрицательного числа не вычисляется." << endl;
+                } else {
+                    cout << "Результат: " << sqrt(num1) << endl;
+                }
+            }
+        }
+        else {
+            cout << "Введите второе число: ";
+            while (!(cin >> num2)) {
+                cout << "Ошибка! Введите число: ";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+
+            switch (op) {
+            case '+':
+                cout << "Результат: " << num1 + num2 << endl;
+                break;
+            case '-':
+                cout << "Результат: " << num1 - num2 << endl;
+                break;
+            case '*':
+                cout << "Результат: " << num1 * num2 << endl;
+                break;
+            case '/':
+                if (num2 == 0) {
+                    cout << "Ошибка! Деление на ноль невозможно." << endl;
+                } else {
+                    cout << "Результат: " << num1 / num2 << endl;
+                }
+                break;
+            case '^':
+                cout << "Результат: " << pow(num1, num2) << endl;
+                break;
+            case '%':
+                if ((int)num2 == 0) {
+                    cout << "Ошибка! Деление на ноль." << endl;
+                } else {
+                    cout << "Результат: " << (int)num1 % (int)num2 << endl;
+                }
+                break;
+            default:
+                cout << "Неверная операция!" << endl;
+            }
+        }
+
+        cout << "Хотите продолжить? (y/n): ";
+        cin >> choice;
+        if (choice == 'n' || choice == 'N') {
+            cout << "Программа завершена." << endl;
+            break;
+        }
+    }
+
+    return 0;
+}
