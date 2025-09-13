@@ -4,6 +4,15 @@
 
 using namespace std;
 
+// функция для факториала
+long long factorial(int n) {
+    if (n < 0) return -1; // ошибка
+    if (n == 0 || n == 1) return 1;
+    long long res = 1;
+    for (int i = 2; i <= n; i++) res *= i;
+    return res;
+}
+
 int main() {
     setlocale(LC_ALL, "Russian"); // поддержка русского текста
 
