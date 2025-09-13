@@ -72,10 +72,21 @@ int main() {
             }
             else {
                 cout << "Результат: " << num1 / num2 << endl;
+                }
+                break;
+            case '^':
+                cout << "Результат: " << pow(num1, num2) << endl;
+                break;
+            case '%':
+                if ((int)num2 == 0) {
+                    cout << "Ошибка! Деление на ноль." << endl;
+                } else {
+                    cout << "Результат: " << (int)num1 % (int)num2 << endl;
+                }
+                break;
+            default:
+                cout << "Неверная операция!" << endl;
             }
-            break;
-        default:
-            cout << "Неверная операция!" << endl;
         }
 
         cout << "Хотите продолжить? (y/n): ";
