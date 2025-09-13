@@ -28,15 +28,33 @@ int main() {
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
 
-        cout << "Введите второе число: ";
-        while (!(cin >> num2)) {
-            cout << "Ошибка! Введите число: ";
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        }
-
-        cout << "Выберите операцию (+, -, *, /): ";
+        cout << "Выберите операцию (+, -, *, /, ^, %, sqrt, !): ";
         cin >> op;
+
+        if (op == '!' || op == 's') { 
+            // операции с одним числом (факториал, sqrt)
+            if (op == '!') {
+                if (num1 < 0 || num1 != (int)num1) {
+                    cout << "Ошибка! Факториал определён только для целых неотрицательных чисел." << endl;
+                } else {
+                    cout << "Результат: " << factorial((int)num1) << endl;
+                }
+            }
+            else if (op == 's') {
+                if (num1 < 0) {
+                    cout << "Ошибка! Корень из отрицательного числа не вычисляется." << endl;
+                } else {
+                    cout << "Результат: " << sqrt(num1) << endl;
+                }
+            }
+        }
+        else {
+            cout << "Введите второе число: ";
+            while (!(cin >> num2)) {
+                cout << "Ошибка! Введите число: ";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
 
         switch (op) {
         case '+':
